@@ -270,7 +270,7 @@ class Heroku::Command::Pg < Heroku::Command::Base
        pg_class.relname,
        pg_locks.transactionid,
        pg_locks.granted,
-       substr(pg_stat_activity.#{query_column},1,30) AS query_snippet,
+       pg_stat_activity.#{query_column} AS query_snippet,
        age(now(),pg_stat_activity.query_start) AS "age"
      FROM pg_stat_activity,pg_locks left
      OUTER JOIN pg_class
